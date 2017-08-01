@@ -1,0 +1,51 @@
+## Editors temporary files
+*~
+*.swp
+.#*
+*.*#
+*.autosave
+._*
+# xemacs temporary files
+*.flc
+
+
+## eclipse project files
+.cproject
+.project
+.settings/
+
+## QT project files
+#*.pro
+*.pro.user
+*.pro.user*
+
+
+## Prerequisites
+*.d
+
+## Compiled Object files
+*.o
+*.obj
+
+## Compiled Static libraries
+*.a
+*.lib
+
+## Compiled Dynamic libraries
+*.dll
+*.so
+
+## Executables
+*.exe
+*.out
+*.app
+
+
+## Valgrind and GDB products
+core*
+callgrind.out*
+
+
+## MarkDown temporary files
+*.md.html
+
