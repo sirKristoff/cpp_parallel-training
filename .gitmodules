@@ -1,0 +1,3 @@
+[submodule "examples/ReactorBase"]
+	path = examples/ReactorBase
+	url = https://github.com/RomanUlan/ReactorBase
