@@ -7,5 +7,5 @@ prepared by Roman Ulan - [Bottega](https://bottega.com.pl).
  * examples
  * reference sollutions of training tasks
  * self-made solutions for training tasks
- * notes with personal comments from training
+ * [notes](notes.md) with personal comments from training
 
