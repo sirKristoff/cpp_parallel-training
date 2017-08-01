@@ -1,0 +1,32 @@
+#include <pthread.h>
+#include <stdexcept>
+#include "thread.h"
+
+using namespace threading;
+
+thread::thread(function &f)
+	: tid(new pthread_t(0))
+{
+	if (pthread_create((pthread_t*)tid, 0, th_f, (void*)&f) != 0) {
+		throw std::runtime_error("cannot spawn thread");
+	}
+}
+
+thread::~thread()
+{
+	delete (pthread_t*)tid;
+}
+
+void thread::join()
+{
+	if (*((pthread_t*)tid))
+		pthread_join(*((pthread_t*)tid), 0);
+}
+
+void* thread::th_f(void *f)
+{
+	function *tf = (function*) f;
+	(*tf)();
+	return 0;
+}
+
