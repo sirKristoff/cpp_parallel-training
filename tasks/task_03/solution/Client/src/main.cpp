@@ -1,6 +1,8 @@
 #include "Socket.hpp"
 
 #include <iostream>
+#include <stdexcept>
+#include <typeinfo>
 
 #include <boost/lexical_cast.hpp>
 
@@ -12,16 +14,16 @@ int main(int argc, char* argv[])
 	if (argc == 2) {
 		try {
 			port = lexical_cast<int>(argv[1]);
-		} catch (const bad_cast& e) {
-			cout << "Invalid port \'" << argv[1] << "\' server will run on port 5050" << endl;
+		} catch (const std::bad_cast& e) {
+			std::cout << "Invalid port \'" << argv[1] << "\' server will run on port 5050" << std::endl;
 		}
 	}
 
 	if (argc == 3) {
 		try {
 			port = lexical_cast<int>(argv[1]);
-		} catch (const bad_cast& e) {
-			cout << "Invalid port \'" << argv[1] << "\' server will run on port 5050" << endl;
+		} catch (const std::bad_cast& e) {
+			std::cout << "Invalid port \'" << argv[1] << "\' server will run on port 5050" << std::endl;
 		}
 
 		ip = argv[2];
@@ -33,15 +35,15 @@ int main(int argc, char* argv[])
 
 		while (1) {
 			string msgTo, msgFrom;
-			cout << "Type message structure (exit to quit)" << endl;
-			cin >> msgTo;
+			std::cout << "Type message structure (exit to quit)" << std::endl;
+			std::cin >> msgTo;
 			if (msgTo == "exit") break;
 			s.Write(msgTo);
 			s.Read(msgFrom);
-			cout << "Received: \"" << msgFrom << "\"" << endl;
+			std::cout << "Received: \"" << msgFrom << "\"" << std::endl;
 		}
-	} catch (const runtime_error& e) {
-		cout << "ERROR: " << e.what() << endl;
+	} catch (const std::runtime_error& e) {
+		std::cout << "ERROR: " << e.what() << std::endl;
 	}
 
 	return 0;

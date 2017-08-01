@@ -9,7 +9,8 @@
 #include <boost/shared_ptr.hpp>
 
 using namespace boost;
-using namespace std;
+//using namespace std;
+using std::string;
 
 class Socket {
 	public:

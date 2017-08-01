@@ -34,7 +34,7 @@ Socket::Address::Address(const std::string& p_Ip, int p_Port)
 	if (p_Port < 0 || p_Port > 0xffff) {
 		std::stringstream ss;
 		ss << "Given port: " << p_Port << " is out of range. Expected range: <0; 65535>.";
-		throw runtime_error(ss.str());
+		throw std::runtime_error(ss.str());
 	}
 
 	sockaddr_in addr;
@@ -47,7 +47,7 @@ Socket::Address::Address(const std::string& p_Ip, int p_Port)
 	if (p_Ip.empty() || !inet_aton(p_Ip.c_str(), &addr.sin_addr)) {
 		std::stringstream ss;
 		ss << "Given IP address: \"" << p_Ip << "\" is not valid";
-		throw runtime_error(ss.str());
+		throw std::runtime_error(ss.str());
 	}
 
 	::memcpy(&m_address, &addr, sizeof addr);
@@ -147,7 +147,7 @@ void Socket::Bind(int p_Port)
 	if (::bind(m_fd, rawAddress(m_address), rawAddressLength(m_address)) < 0) {
 		std::stringstream ss;
 		ss << "Bind socket failed: " << strerror(errno);
-		throw runtime_error(ss.str());
+		throw std::runtime_error(ss.str());
 	}
 }
 
@@ -156,7 +156,7 @@ void Socket::Listen()
 	if (::listen(m_fd, 1) != 0) {
 		std::stringstream ss;
 		ss << "Listen socket failed: " << strerror(errno);
-		throw runtime_error(ss.str());
+		throw std::runtime_error(ss.str());
 	}
 }
 
@@ -169,7 +169,7 @@ void Socket::Accept(Socket::Ptr& p_Socket)
 	if (incomingFd < 0) {
 		std::stringstream ss;
 		ss << "Accept socket failed: " << strerror(errno);
-		throw runtime_error(ss.str());
+		throw std::runtime_error(ss.str());
 	}
 
 	p_Socket = Socket::create(m_type, incomingFd, incomingAddress);
@@ -182,7 +182,7 @@ void Socket::Connect(const std::string& p_Ip, int p_Port)
 	if (::connect(m_fd, rawAddress(m_address), rawAddressLength(m_address)) < 0) {
 		std::stringstream ss;
 		ss << "Cannot connect address: " << p_Ip << ":" << p_Port << " " << strerror(errno);
-		throw runtime_error(ss.str());
+		throw std::runtime_error(ss.str());
 	}
 }
 
